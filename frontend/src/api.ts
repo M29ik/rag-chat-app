@@ -1,4 +1,6 @@
-const API_BASE = 'http://127.0.0.1:8000'
+// VITE_API_BASE is set in Vercel's project settings for the deployed build;
+// locally it falls back to the backend running on your own machine.
+const API_BASE = import.meta.env.VITE_API_BASE || 'http://127.0.0.1:8000'
 
 export interface DocumentInfo {
   id: string

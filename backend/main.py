@@ -15,10 +15,14 @@ load_dotenv()  # reads backend/.env into environment variables
 app = FastAPI()
 client = genai.Client()  # reads GEMINI_API_KEY from the environment
 
-# Lets the React frontend (running on a different port) talk to this server.
+# Lets the React frontend talk to this server: localhost during development,
+# and the deployed Vercel site in production.
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=[
+        "http://localhost:5173",
+        "https://rag-chat-app-seven.vercel.app",
+    ],
     allow_methods=["*"],
     allow_headers=["*"],
 )
